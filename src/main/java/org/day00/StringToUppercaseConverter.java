@@ -1,4 +1,4 @@
-package org.day11;
+package org.day00;
 
 public class StringToUppercaseConverter {
 

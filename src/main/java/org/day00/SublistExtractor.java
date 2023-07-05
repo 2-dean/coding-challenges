@@ -1,4 +1,4 @@
-package org.day11;
+package org.day00;
 
 import java.util.ArrayList;
 import java.util.List;
