@@ -16,17 +16,26 @@ public class Question11_3 {
 
 
     static String solution(String my_string, int[] indices) {
-        List<Integer> list = new ArrayList<>();
+        List<Character> list = new ArrayList<>();
 
-        System.out.println("list: " + list.toString());
+        StringBuilder result = new StringBuilder();
+        char[] charArray = my_string.toCharArray();
 
-        int[] answer = new int[list.size()];
-        for (int i=0; i<list.size(); i++) {
-            answer[i] = list.get(i);
+
+        for (int i=0; i<charArray.length; i++) {
+            boolean removeChar = false;
+            for (int index : indices) {
+                if (index == i) {
+                    removeChar = true;
+                    break;
+                }
+            }
+            if (!removeChar) {
+                result.append(charArray[i]);
+            }
         }
-        String result = "";
 
-        return result;
+        return result.toString();
     }
 
 
