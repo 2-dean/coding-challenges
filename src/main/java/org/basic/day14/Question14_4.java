@@ -1,4 +1,4 @@
-package org.day14;
+package org.basic.day14;
 
 public class Question14_4 {
 

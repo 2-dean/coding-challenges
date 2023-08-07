@@ -1,7 +1,4 @@
-package org.day14;
-
-import java.util.ArrayList;
-import java.util.List;
+package org.basic.day14;
 
 public class Question14_1 {
 

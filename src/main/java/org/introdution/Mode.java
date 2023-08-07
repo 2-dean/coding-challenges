@@ -1,4 +1,4 @@
-package org.practice;
+package org.introdution;
 
 import java.util.*;
 
@@ -19,28 +19,21 @@ public class Mode {
         // map : {1=1, 2=1, 3=3, 4=3}
 
         // map 의 value 비교
-        int maxValue = 0;
-        Map.Entry<Integer, Integer> maxEntry = null;
 
+        int maxValue = Collections.max(map.values());
 
         for (Map.Entry<Integer, Integer> entry : map.entrySet()){
-            if (maxEntry == null || entry.getValue() > maxEntry.getValue()) {
-                maxEntry = entry;
-                maxKey.add(entry.getKey());
-                maxKey.remove(maxEntry);
-            } else if (maxEntry.equals(entry.getValue())) {
-                System.out.println("maxvalue : " + maxValue);
-                System.out.println("entry.getValue() : " +  entry.getValue());
 
+            if (maxValue == entry.getValue()) {
                 maxKey.add(entry.getKey());
-
+                System.out.println("maxVaue  : " + maxValue + ", maxKey : " + maxKey);
             }
         }
-        System.out.println("map :" +map.toString());
-        System.out.println("map.entrySet() :" + map.entrySet().toString());
 
-        for (int max : maxKey){
-            System.out.println("maxNum : " + max);
+        if(maxKey.size() > 1) {
+            answer = -1;
+        } else {
+            answer = maxKey.get(0);
         }
 
 
