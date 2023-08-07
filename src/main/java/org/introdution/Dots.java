@@ -1,4 +1,4 @@
-package org.practice;
+package org.introdution;
 
 public class Dots {
 

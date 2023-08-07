@@ -1,6 +1,4 @@
-package org.practice;
-
-import java.util.Arrays;
+package org.introdution;
 
 public class Polynomial {
 
