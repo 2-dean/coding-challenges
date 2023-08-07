@@ -26,7 +26,7 @@ public class Mode {
 
             if (maxValue == entry.getValue()) {
                 maxKey.add(entry.getKey());
-                System.out.println("maxVaue  : " + maxValue + ", maxKey : " + maxKey);
+                //System.out.println("maxVaue  : " + maxValue + ", maxKey : " + maxKey);
             }
         }
 
@@ -35,7 +35,6 @@ public class Mode {
         } else {
             answer = maxKey.get(0);
         }
-
 
         return answer;
     }
