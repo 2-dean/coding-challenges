@@ -18,8 +18,7 @@ public class Mode {
         }
         // map : {1=1, 2=1, 3=3, 4=3}
 
-        // map 의 value 비교
-
+        // map value 의 최대값
         int maxValue = Collections.max(map.values());
 
         for (Map.Entry<Integer, Integer> entry : map.entrySet()){
