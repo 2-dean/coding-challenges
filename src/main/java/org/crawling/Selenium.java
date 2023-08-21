@@ -136,9 +136,9 @@ public class Selenium {
             }
         }
         // ID 숫자 리스트 출력
-        for (int i = 0; i < idNumbers.size(); i++) {
-            System.out.println("ID 숫자 " + (i + 1) + ": " + idNumbers.get(i));
-        }
+//        for (int i = 0; i < idNumbers.size(); i++) {
+//            System.out.println("ID 숫자 " + (i + 1) + ": " + idNumbers.get(i));
+//        }
 
         // 엑셀 파일 생성
         Workbook workbook = new XSSFWorkbook();
@@ -152,6 +152,7 @@ public class Selenium {
             //System.out.println("블로그: "+ title.get(i).getText());
         }
 
+        // Try-with-resources - try에 자원 객체를 전달하면, try 코드 블록이 끝나면 자동으로 자원을 종료
         try (FileOutputStream outputStream = new FileOutputStream("C:\\Users\\ddu\\study\\crawling\\selenium_" + word+".xlsx")) {
             workbook.write(outputStream);
         }
