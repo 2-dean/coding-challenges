@@ -15,10 +15,19 @@ public class Q10_2 {
      * 2차원으로 바꿀 때에는 num_list의 원소들을 앞에서부터 n개씩 나눠 2차원 배열로 변경합니다.
      */
     public static int[][] solution(int[] num_list, int n) {
-        int[][] answer = {};
-        List<Integer> list = new ArrayList<>();
-        for (int num : num_list) {
-            num_list.copy
+        int out = num_list.length/n;
+        int index = 0;
+        int[][] answer = new int[out][n];
+
+        for (int i=0; i<answer.length; i++) {
+            //1차원 배열을만들고
+            int[] temp = new int[n];
+            for(int j=0; j<n; j++){
+                temp[j] = num_list[index];
+                index++;
+            }
+            //2차원 배열에 넣어주기
+            answer[i] = temp;
         }
         return answer;
     }
