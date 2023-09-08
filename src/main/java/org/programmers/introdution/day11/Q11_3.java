@@ -1,4 +1,4 @@
-package org.programmers.introdution.day10;
+package org.programmers.introdution.day11;
 
 public class Q11_3 {
 

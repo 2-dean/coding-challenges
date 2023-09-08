@@ -11,18 +11,13 @@ public class Q10_3 {
      */
     public static int solution(int[] numbers, int k) {
         int answer = 0;
-        int count = 0;
+        int index = 0;
 
-        for(int i=0; i<k; i++){
-            System.out.println("count : " +(i+1) + " 번째");
-            answer = numbers[count];
-            count +=2;
-            System.out.println("index : " + count  + ", 던지는 사람 : " + answer);
-            //if(k % 2 == 0 &&  count > numbers.length-1)  count=0;
-            //if(k % 2 != 0 && count > numbers.length-1) count = 1;
-            if(count > numbers.length-1) count = 1;
-            if(numbers.length <= k && count > numbers.length-1) count = 1;
+        for(int i=1; i<=k; i++){
+            index +=2;
+            index %= numbers.length; //열의 끝에 도달하면 다시 배열의 처음으로 돌아가도록
         }
+        answer = numbers[index];
 
         return answer;
     }
@@ -30,8 +25,8 @@ public class Q10_3 {
 
 
     public static void main(String[] args) {
-        int[] num_list = {1, 2, 3, 4, 5, 6};
-        System.out.println(solution(num_list, 5));
+        int[] num_list = {1, 2, 3, 4};
+        System.out.println(solution(num_list, 2));
     }
 
 }

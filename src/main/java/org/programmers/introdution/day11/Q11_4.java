@@ -1,4 +1,4 @@
-package org.programmers.introdution.day10;
+package org.programmers.introdution.day11;
 
 import java.sql.SQLOutput;
 
