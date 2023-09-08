@@ -9,30 +9,11 @@ public class Q12_1 {
      */
     public static  String solution(String my_string) {
         StringBuilder answer = new StringBuilder();
-        String[] aioue =  {"a", "i", "o", "u", "e"};
+        String aioue = "aioue";
         //String[] splitArray = my_string.split("u");
 
-        if(my_string.contains("a")) {
-            my_string.split("a");
-        }
-        if(my_string.contains("i")) {
-            my_string.split("i");
-        }
-        if(my_string.contains("o")) {
-            my_string.split("o");
-        }
-        if(my_string.contains("u")) {
-            System.out.println("contain U");
+        System.out.println(my_string.indexOf("u"));
 
-//            String[] splitArray = my_string.split("u");
-//            for (String part : splitArray) {
-//                System.out.println(part);
-//            }
-        }
-
-        if(my_string.contains("e")) {
-            my_string.split("e");
-        }
 
         return my_string;
     }
