@@ -1,6 +1,9 @@
 package org.programmers.introdution.day12;
 
-import java.util.Arrays;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Q12_4 {
 
@@ -16,27 +19,31 @@ public class Q12_4 {
 
      */
     public static int[] solution(int n) {
-        int[] answer = {};
 
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> list = new ArrayList<>();
 
-        // 약수의 갯수
-        for (int i = 1; i <= n; ++i){
-            //if 합성수면 answer++  아니면 넘어감
-            // 합성수?
-            int count = 0;
-            for(int j= 1; j<=i; ++j) {
-                if(i % j == 0) {
-                    // 약수 여부를 판단
-                    count++;
-                }
-            }
-            if (count >= 3) {
-
+        //1. N을 모든 숫자와 나누기 n을 2부터 나누는데 나누어 떨어지면 나누는 숫자는 n의 인수가된다
+        // 간단하지만 n이 커질수록 효율적이지 못함
+        int k = 2;
+        while (n != 1) {
+            if (n % k == 0) {
+                //N을 k로 나눈 값으로 N의 값을 다시 수정
+                n /= k;
+                map.put(k, map.getOrDefault(k, 1));
+            } else {
+                k ++;
             }
         }
 
-
-
+        int[] answer = new int[map.size()];
+        for (Integer integer : map.keySet()) {
+            list.add(integer);
+        }
+        for (int i=0; i<list.size(); i++) {
+            answer[i] = list.get(i);
+        }
+        Arrays.sort(answer);
         return answer;
     }
 

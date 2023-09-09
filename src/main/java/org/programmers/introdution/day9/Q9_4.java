@@ -24,13 +24,7 @@ public class Q9_4 {
             return n * factorial(n - 1);
         }
     }
-    public static long factorial(int n) {
-        if (n == 0) {
-            return 1;
-        } else {
-            return n * factorial(n - 1);
-        }
-    }
+
 
 
     public static long solution(int balls, int share) {

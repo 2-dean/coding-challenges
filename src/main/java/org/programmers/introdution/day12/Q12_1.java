@@ -9,13 +9,17 @@ public class Q12_1 {
      */
     public static  String solution(String my_string) {
         StringBuilder answer = new StringBuilder();
-        String aioue = "aioue";
-        //String[] splitArray = my_string.split("u");
-
-        System.out.println(my_string.indexOf("u"));
 
 
-        return my_string;
+        // 문자열이 포함되면? 담지 않기
+
+        for (char c : my_string.toCharArray()) {
+            if (c != 'a' && c != 'i' && c != 'o' && c != 'u' && c != 'e') {
+                answer.append(c);
+            }
+        }
+
+        return answer.toString();
     }
 
     public static void main(String[] args) {
