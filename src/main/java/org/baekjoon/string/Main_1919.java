@@ -4,32 +4,60 @@ import java.util.Scanner;
 
 public class Main_1919 {
 
-/* 문제 :두 영어 단어가 철자의 순서를 뒤바꾸어 같아질 수 있을 때, 그러한 두 단어를 서로 애너그램 관계에 있다고 한다.
-예를 들면 occurs 라는 영어 단어와 succor 는 서로 애너그램 관계에 있는데, occurs의 각 문자들의 순서를 잘 바꾸면 succor이 되기 때문이다.
+/* 문제 : 애너그램 만들기
+    애너그램 : 단어의 구성(알파벳과 그 개수)이 완전히 같은단어
+    없애야 하는 문자 :  공통 문자를 제외한 전부
 
-한 편, dared와 bread는 서로 애너그램 관계에 있지 않다. 하지만 dared에서 맨 앞의 d를 제거하고,
-bread에서 제일 앞의 b를 제거하면, ared와 read라는 서로 애너그램 관계에 있는 단어가 남게 된다.
+    dared {'a': 1,        'd':2, 'e': 1,  'r':1 } // d 1개 제거
+    bread {'a': 1, 'b':1, 'd':1, 'e': 1 , 'r':1 } // b 제거
 
-두 개의 영어 단어가 주어졌을 때, 두 단어가 서로 애너그램 관계에 있도록 만들기 위해서 제거해야 하는
-최소 개수의 문자 수를 구하는 프로그램을 작성하시오. 문자를 제거할 때에는 아무 위치에 있는 문자든지 제거할 수 있다.
-*  */
-
-    public static String solution(String str) {
-        String result = "";
-        for(char c: str.toCharArray()) {
-            // 대소문자구분 -> 바꾸기
-            if(Character.isUpperCase(c)) {
-                result += Character.toLowerCase(c);
-            } else {
-                result += Character.toUpperCase(c);
-            }
+*/
+    public static int[] getAlphabetCount(String str) {
+        int[] count = new int[26];
+        for (int i=0; i < str.length(); i ++) {
+            count[str.charAt(i) - 'a']++; // 알파벳에 해당하는 인덱스 번호가 ++됨
         }
-        return result;
+
+        return count;
     }
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String inputString = scanner.next();
-        System.out.println(solution(inputString));
+        Scanner sc = new Scanner(System.in);
+        String a = sc.next();
+        String b = sc.next();
+
+        // a와 b의 알파벳 구성
+
+ /*    함수로 뺌!
+        int[] countA = new int[26]; // 알파벳이 26자 [1, 0, 0, 2]
+        int[] countB = new int[26];
+        for (int i=0; i < a.length(); i ++) {
+            countA[a.charAt(i) - 'a']++; // 알파벳에 해당하는 인덱스 번호가 ++됨
+        }
+        for (int i=0; i < b.length(); i ++) {
+            countB[b.charAt(i) - 'a']++; // 알파벳에 해당하는 인덱스 번호가 ++됨
+        }
+*/
+        int[] countA = getAlphabetCount(a);
+        int[] countB = getAlphabetCount(b);
+
+        int answer = 0;
+
+        for(int i=0; i<26; i++){
+            // 대소 구분 하지 않고 더하는 방법!
+            // abs =  절대값 리턴 ! 음수가 나올경우에 절대값을 취한 값을 받아서 대소 비교와 마찬가지 로! ~적용
+            answer += Math.abs(countA[i] - countB[i]);
+
+            // 그냥 빼면 대소구분 해야함
+          /*  if (countA[i] > countB[i])
+                answer += countA[i] - countB[i];
+
+            if (countB[i] > countA[i])
+                answer += countB[i] - countA[i];*/
+        }
+
+        System.out.println(answer);
+
+
     }
 
 }
