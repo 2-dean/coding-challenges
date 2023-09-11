@@ -1,4 +1,4 @@
-package org.baekjoon.string;
+package org.baekjoon.part1;
 
 public class Main_1543 {
     /*
