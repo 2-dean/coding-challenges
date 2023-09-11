@@ -22,28 +22,27 @@ public class Main_10158 {
 
         int count = 0;
         System.out.printf("before : %d, %d", p ,q);
-        System.out.println("----------------");
-        while (count <= 8) {
+        System.out.println("\n----------------");
+        while (count < time) {
             count ++;
             // p+1, q+1 이 각각 w, h 보다 작거나 같으면 거기로 이동 +1
             // p+1 은 w 보다 작고, q+1은 h 보다 큰경우
             // q+1 은 h 보다 작고, p+1은 w 보다 큰경우
             // p+1, q+1 이 각각 w, h 보다 커지면 p-1, q-1로 이동
-            if (p+1 <= width) {
+            if (p < width && q < height) {
                 p += 1;
-            }
-            if ( q+1 <= height) {
                 q += 1;
-            }
-
-            if (p+1 > width || q+1 > height){
+            } else if (p == width){ //지금 q,p가 끝점에 닿아있을때
+                p -= 1;
+                q -= 1;
+            } else if (q == height) {
                 p -= 1;
                 q -= 1;
             }
-            System.out.printf("\nmoving : %d, %d", p ,q);
+            System.out.printf("\n count : %d , moving : %d, %d", count, p ,q);
 
         }
-        System.out.println("----------------");
+        System.out.println("\n----------------");
         System.out.printf("\nafter : %d, %d", p ,q);
     }
 }
