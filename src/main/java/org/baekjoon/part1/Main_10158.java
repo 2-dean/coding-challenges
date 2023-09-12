@@ -17,32 +17,33 @@ public class Main_10158 {
         int width = Integer.parseInt(widthAndHeightArr[0]);
         int height = Integer.parseInt(widthAndHeightArr[1]);
 
-        int p = Integer.parseInt(pCommaQtArr[0]);
-        int q = Integer.parseInt(pCommaQtArr[1]);
+        int currentX = Integer.parseInt(pCommaQtArr[0]);
+        int currentY = Integer.parseInt(pCommaQtArr[1]);
 
-        int count = 0;
-        System.out.printf("before : %d, %d", p ,q);
-        System.out.println("\n----------------");
-        while (count < time) {
-            count ++;
-            // p+1, q+1 이 각각 w, h 보다 작거나 같으면 거기로 이동 +1
-            // p+1 은 w 보다 작고, q+1은 h 보다 큰경우
-            // q+1 은 h 보다 작고, p+1은 w 보다 큰경우
-            // p+1, q+1 이 각각 w, h 보다 커지면 p-1, q-1로 이동
-            if (p < width && q < height) {
-                p += 1;
-                q += 1;
-            } else if (p == width){ //지금 q,p가 끝점에 닿아있을때
-                p -= 1;
-                q -= 1;
-            } else if (q == height) {
-                p -= 1;
-                q -= 1;
+        int deltaX = 1;
+        int deltaY = 1;
+
+        int timeX = time % (2 * width);
+        int timeY = time % (2 * height);
+
+        while (timeX-- > 0) {
+            if (currentX == width){
+                deltaX = -1;
+            } else if (currentX == 0){
+                deltaX = 1;
             }
-            System.out.printf("\n count : %d , moving : %d, %d", count, p ,q);
+            currentX += deltaX;
+        }
 
+        while (timeY-- > 0) {
+            if (currentY == width){
+                deltaY = -1;
+            } else if (currentY == 0) {
+                deltaY = 1;
+            }
+            currentY += deltaY;
         }
         System.out.println("\n----------------");
-        System.out.printf("\nafter : %d, %d", p ,q);
+        System.out.printf("\nafter : %d, %d", currentX ,currentY);
     }
 }
