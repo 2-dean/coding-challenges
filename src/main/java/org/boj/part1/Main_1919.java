@@ -1,4 +1,4 @@
-package org.baekjoon.part1;
+package org.boj.part1;
 
 import java.util.Scanner;
 
