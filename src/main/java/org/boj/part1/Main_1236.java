@@ -55,32 +55,6 @@ public class Main_1236 {
         // 3. 행,열중 더 큰값을 출력
         System.out.println(Math.max(needRowCount, needColCount));
 
-/*      행만 계산함 ;;
-
-        String[] heightAndWidth = nm.split(" ");
-        int n = Integer.parseInt(heightAndWidth[0]); // 세로
-        int m = Integer.parseInt(heightAndWidth[1]); // 가로
-
-        System.out.println("n : " + n);
-        System.out.println("m : " + m);
-        int count = 0;
-        boolean isX = false;
-        String[] arr = new String[n];
-        for (int i=0; i < n; i++) {
-            String security = sc.nextLine();
-            arr[i] = security;
-        }
-        for (int i = 0; i< arr.length; i++) {
-            for (char x : arr[i].toCharArray()){
-                //열에 X가 하나도 없으면 count++;
-                if (x == 'X') isX = true;
-            }
-            if(!isX) {
-                count ++;
-            }
-            isX = false; // 초기화
-            System.out.println(count);
-        }*/
 
     }
 }
