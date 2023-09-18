@@ -1,6 +1,8 @@
-package org.programmers.introdution;
+package org.programmers.introdution.day20;
 
-public class Polynomial {
+public class Q20_4 {
+
+    // 다항식 만들기
 
     // 한 개 이상의 항의 합으로 이루어진 식을 다항식이라고 합니다.
     // 다항식을 계산할 때는 동류항끼리 계산해 정리합니다.
