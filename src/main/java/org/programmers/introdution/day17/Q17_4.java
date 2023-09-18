@@ -13,41 +13,21 @@ public class Q17_4 {
         String[] answer = new String[quiz.length];
 
         for (int i = 0; i < quiz.length; i++) {
-            String equation = quiz[i];
+            String[] equationArr = quiz[i].split(" ");
 
-            // = 구분
-            int equalIndex = equation.indexOf('=');
-
-
-            // 등호 기준으로 좌측과 우측 부분 나누기
-            String leftSide = equation.substring(0, equalIndex).trim();
-            String rightSide = equation.substring(equalIndex + 1).trim(); // 결과값 부분ㄴ
-
-
-            //  + , - 연산자 위치 찾기
-            int operatorIndex = -1;
-            if (leftSide.contains("+")) {
-                operatorIndex = leftSide.indexOf('+');
-            } else if (leftSide.contains("-")) {
-                operatorIndex = leftSide.lastIndexOf('-');
-            }
-
-            // 연산자를 기준으로 좌측과 우측 부분 나누기
-            String leftOperand = leftSide.substring(0, operatorIndex).trim(); // 공백 잘라서 숫자만
-            String operator = leftSide.substring(operatorIndex, operatorIndex + 1).trim();
-            String rightOperand = leftSide.substring(operatorIndex + 1).trim();
+            System.out.println("equationArr : " + Arrays.toString(equationArr));
 
             // X, Y, Z의 값을 초기화
-            int X = Integer.parseInt(leftOperand);
-            int Y = Integer.parseInt(rightOperand);
-            int Z = Integer.parseInt(rightSide);
+            int X = Integer.parseInt(equationArr[0]);
+            int Y = Integer.parseInt(equationArr[2]);
+            int Z = Integer.parseInt(equationArr[4]);
 
 
             // X, Y, Z 값을 계산하여 결과 문자열 생성
             int result = 0;
-            if (equation.contains("+")) {
+            if (equationArr[1].equals("+")) {
                 result = X + Y;
-            } else if (equation.contains("-")) {
+            } else if (equationArr[1].equals("-")) {
                 result = X - Y;
             }
 
