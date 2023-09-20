@@ -13,27 +13,24 @@ public class Q23_1 {
      *
      */
     public static int[] solution(int[] numlist, int n) {
-        int[] answer = new int[numlist.length];
-        int[] newArr = new int[answer.length];
+        int[] answer  = new int[numlist.length];
+        double[] order = new double[numlist.length];
 
-        // 원소 중에서 기준 되는 원소와 차가 적은 수 를 다음에 배치
+        for(int i = 0; i < numlist.length; i++) {
+            if (numlist[i] - n < 0) {
+                // n을 뺐을때 음수값인경우
+                order[i] = ((int)Math.abs(numlist[i] - n)) + 0.5;
+            } else {
+                order[i] = numlist[i] - n;
+            }
+        }
 
-        int diff = 0;
+        Arrays.sort(order);
 
         for (int i = 0; i < numlist.length; i++) {
-            if (numlist[i] == n) {
-                answer[0] = numlist[i];
-            }
+            if (order[i] % 1 != 0) answer[i] = n - (int)order[i];
+            else answer[i] = (int)order[i] + n;
         }
-
-        Arrays.sort(numlist);
-
-        for (int i = 1 ; i < answer.length; i++) {
-            if (numlist[i] != n) {
-                answer[i] = numlist[i];
-            }
-        }
-
 
         return answer;
     }
