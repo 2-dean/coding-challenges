@@ -10,22 +10,28 @@ public class Q23_2 {
      */
     public static int[] solution(int[][] score) {
         int[] answer = new int[score.length];
-
+        double[] averageArr = new double[score.length];
 
         // 평균 점수 구하기
         for (int i=0; i< score.length; i++) {
             int eng = score[i][0];
             int math = score[i][1];
-
-            int average = (eng + math)/2;
-            answer[i] = average;
+            double average = (double) (eng + math) /2;
+            averageArr[i] = average;
             System.out.println("i : " + i +", average : " + average);
         }
 
-        //Arrays.sort(answer);
-
-        for (int i=0; i < answer.length; i++) {
-            answer[i] = i  + 1;
+        for (int i=0; i < averageArr.length; i++) {
+            int rank = 1;
+            // i 는 현재 등수를 구하고싶은 학생
+            for (int j = 0; j < averageArr.length; j++){
+                if(averageArr[i] < averageArr[j]) {
+                     //  나보다 평균 높은 학생
+                    rank++;
+                }
+                    System.out.println("rank : "  +rank);
+            }
+            answer[i] = rank;
         }
 
 
@@ -34,7 +40,8 @@ public class Q23_2 {
     }
 
     public static void main(String[] args) {
-
+        int[][] score = new int[][] {{80, 70}, {90, 50}, {40, 70}, {50, 80}};
+        System.out.println("[result] :" + Arrays.toString(solution(score)));
     }
 
 }
