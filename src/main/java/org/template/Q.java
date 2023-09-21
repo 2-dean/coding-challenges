@@ -1,6 +1,6 @@
 package org.template;
 
-public class Q0_0 {
+public class Q {
 
     /**
      *  문제 :
