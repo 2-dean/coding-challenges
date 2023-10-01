@@ -13,12 +13,27 @@ public class Q147355 {
      */
     public static int solution(String t, String p) {
         int answer = 0;
+
+        // p의 길이
+        int length = p.length();
+
+        long pNumber = Long.parseLong(p);
+
+        for (int i = 0; i < t.length(); i++) {
+            if (i + length > t.length()) break;
+            long subNumber = Long.parseLong(t.substring(i, i + length));
+            System.out.println("subNumber : " + subNumber);
+            if (subNumber <= pNumber) answer++;
+
+        }
+
         return answer;
+
 
     }
 
     public static void main(String[] args) {
-
+        System.out.println("result: " + solution("500220839878", "7"));
     }
 
 }
