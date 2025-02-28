@@ -43,8 +43,18 @@ public class FailureRate {
             double failRate = (challengers[i] == 0) ?  0.0 : (double) failures[i] / challengers[i];
             failRateList.add(new Pair(i, failRate));
         }
-
+        // 실패율 내림차순 정렬  실패율이 같으면 stage번호 오름차순
+                        //두개의 Pair 객체를 비교 ,                         //실패율이 같다 > 스테이지 오름차순 정렬 // b.failRate가 a.failRate보다 크면, b가 먼저 오도록 설정(실패율 내림차순)
         failRateList.sort((a, b) -> (b.failRate == a.failRate) ? Integer.compare(a.stage, b.stage) : Double.compare(b.failRate, a.failRate));
+        /*
+        failRateList.sort((a, b) -> {
+            if (b.failRate == a.failRate) {
+                return Integer.compare(a.stage, b.stage); // 스테이지 번호 오름차순
+            } else {
+                return Double.compare(b.failRate, a.failRate); // 실패율 내림차순
+            }
+        });
+        */
         // 정렬된 결과를 answer 배열에 담기
         for (int i = 0; i < N; i++) {
             answer[i] = failRateList.get(i).stage;
