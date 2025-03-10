@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Lotto {
+/*
     private static int getRank(int count) {
         return switch (count) {
             case 6 -> 1; // 6개 일치 → 1등
@@ -14,14 +15,13 @@ public class Lotto {
             default -> 6; // 나머지 → 6등 (꽝)
         };
     }
+*/
 
     public static int[] solution(int[] lottos, int[] win_nums) {
 
-/*        Map<Integer, Integer> Maxmap = new HashMap<>();
-        Map<Integer, Integer> Minmap = new HashMap<>();*/
+
         int countMatch = 0; // 맞춘 개수
         int zeroCount = 0;  // 0의 개수
-
         // 당첨 번호를 Set으로 관리하여 검색 속도 최적화
         Set<Integer> winSet = new HashSet<>();
         for (int num : win_nums) {
@@ -36,13 +36,12 @@ public class Lotto {
             }
         }
 
-        //최고순위 0을 전부 당첨으로
+    /*    //최고순위 0을 전부 당첨으로
         int maxRank = getRank(countMatch+zeroCount);
         //최저순위 0 을 전부 꽝으로
         int minRank = getRank(countMatch);
-
-        return new int[]{maxRank, minRank};
-
+*/
+      return new int[]{1, 2};
     }
 
     public static void main(String[] args) {
