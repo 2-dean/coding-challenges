@@ -1,6 +1,45 @@
 package org.programmers.level1;
 
 public class FlexibleWorkSystem {
+    //최적화된 풀이
+    public static int solution2(int[] schedules, int[][] timelogs, int startday) {
+        int n = schedules.length;
+        int[] lateLimit = new int[n];
+
+        // 출근 가능시간 계산  (schedules + 10분)
+        for (int i = 0; i < n; i++) {
+            int hour = schedules[i] % 100;
+            int minute = schedules[i] / 100 + 10;
+            if (minute >= 60) {
+                hour += 1;
+                minute -=60;
+            }
+            lateLimit[i] = hour * 100 + minute;
+        }
+
+        //토요일 일요일 인덱스 계산
+        int satIdx = (6-startday + 7) % 7;
+        int sunIdx = (7-startday + 7) % 7;
+
+        //상품을 받을 직원 수계산
+        int onTimeEmployees = 0;
+        for (int i = 0; i < n; i++) {
+            boolean isOnTime = true;
+            for (int j = 0; j < 7; j++) {
+                if (j == satIdx || j == sunIdx) continue;
+                if (timelogs[i][j] > lateLimit[i]) {
+                    isOnTime = false;
+                    break;
+                }
+            }
+            if (isOnTime) onTimeEmployees++;
+        }
+
+
+        return onTimeEmployees;
+    }
+
+
     // 유연근무제
     public static int solution(int[] schedules, int[][] timelogs, int startday) {
         int answer = 0;
@@ -56,7 +95,8 @@ public class FlexibleWorkSystem {
                 if (j != satIdx && j != sunIdx) {
                     if (schedules[i] < timelogs[i][j]) {
                         check++;// 지각여부체크
-                    }
+                        // 이것보다 지각하면 바로탈락이 좋음!
+                     }
 
                 }
             }
