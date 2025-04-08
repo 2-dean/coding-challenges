@@ -28,7 +28,7 @@ public class Shiritori {
             int turn = (i + 1) % n == 0 ? (i+1)/n : (i+1)/n +1;
             // 끝글자랑 맞고 나온적 없으면 okay
             if (lastWord.equals(firstWord) && !wordMap.containsKey(nowWord)) {
-                wordMap.put(nowWord);
+                wordMap.put(nowWord, person);
             } else {
                 answer[0] = person;
                 answer[1] = turn;
