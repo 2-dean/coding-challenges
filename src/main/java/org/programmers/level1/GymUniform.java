@@ -1,6 +1,10 @@
 package org.programmers.level1;
 
+import javax.swing.*;
+import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GymUniform {
     /*
@@ -15,47 +19,46 @@ public class GymUniform {
 체육수업을 들을 수 있는 학생의 최댓값을 return 하도록 solution 함수를 작성해주세요.
      */
     public static int solution(int n, int[] lost, int[] reserve) {
-        int answer = 0;
-        Arrays.sort(lost);
-        Arrays.sort(reserve);
 
-        boolean[] hasExtra = new boolean[n + 1]; //여벌체육복 여부
-        boolean[] isLost = new boolean[n + 1];  //도난당한학생
+        int[] arr = new int[n];
+   /*     for (int i = 0; i < n; i++) {
+            arr[i] = 1;
+        }*/
 
-        for (int r : reserve ) hasExtra[r] = true;
-        for (int l : lost ) isLost[l] = true;
+        // 기본 체육복 1벌
+        Arrays.fill(arr, 1);
 
-        // 여벌이 있는데 도난당한 경우 자기 체육복 사용
-        for (int i = 1; i <= n; i++) {
-            if (hasExtra[i] && isLost[i]) {
-                hasExtra[i] = false;
-                isLost[i] = false;
-            }
+        // 여벌
+        for (int r : reserve) {
+            arr[r-1]++;
+        }
+        // 도난
+        for (int l : lost) {
+            arr[l-1]--;
         }
 
-        // 체육복 빌려주기
-        for (int i=1; i<=n; i++) {
-            if (isLost[i]) { //
-                if (i > 1 && hasExtra[i - 1]) { // 앞번호 사람한테빌림
-                    hasExtra[i - 1] = false;
-                    isLost[i] = false;
-                } else if (i < n && hasExtra[i + 1]) {
-                    hasExtra[i + 1] = false;
-                    isLost[i] = false;
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 0) {
+                if (i > 0 && arr[i - 1] == 2) { // 1번인덱스~
+                    arr[i]++;
+                    arr[i - 1]--;
+                } else if (i < n - 1 && arr[i + 1] == 2) {
+                    arr[i]++;
+                    arr[i + 1]--;
                 }
             }
         }
-
-        for (int i = 1; i <= n; i++) {
-            if(!isLost[i]) {
-                answer++;
-            }
+        for (int s : arr) {
+            if (s > 0) count++;
         }
-        return answer;
+
+        return count;
     }
 
 
     public static void main(String[] args) {
-        solution(5, new int[] {2,4}, new int[] {1,3,5});
+        solution(5, new int[] {3}, new int[] {1});
     }
 }
+
