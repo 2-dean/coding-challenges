@@ -9,41 +9,50 @@ public class GetReportResults {
         // 한사람이 한명을 여러번 신고 못함
         // 신고 결과를 메일로 받은 횟수를 리턴
 
-        // 각 유저가 신고한 유저들을 관리하기 위한 Set
-        Map<String, Set<String>> reportMap = new HashMap<>();
-        // 신고당한 유저들의 신고횟수를 카운트할 Map
-        Map<String, Integer> mailCount = new HashMap<>(); // 결과 메일 받을 횟수 저장
-
-        for (String id : id_list) {
-            reportMap.put(id, new HashSet<>()); // 초기화
-            mailCount.put(id, 0);
-        }
-        // 신고데이터 중복 처리
+        // 누가 누구를 신고했는지 기록
+        Map<String, Set<String>> reportMap = new HashMap<>(); // 신고자 -> 피신고자 목록
         for (String r : report) {
             String[] parts = r.split(" ");
-            String reporter = parts[0]; //신고자
-            String reported = parts[1]; //신고당한사람
+            String from = parts[0];
+            String to = parts[1];
 
-            // 중복 신고 방지 (Set이므로 중복 자동 제거)
-            reportMap.get(reported).add(reporter);
+            reportMap.putIfAbsent(from, new HashSet<>());
+            reportMap.get(from).add(to); // 중복 신고 방지됨
         }
-        System.out.println(reportMap.toString());
-        // 정지된 유저 찾기
-        for (String reportedUser : reportMap.keySet()) {
-            if (reportMap.get(reportedUser).size() >= k) {
-                for (String reporter : reportMap.get(reportedUser)) {
-                    mailCount.put(reporter, mailCount.get(reporter) + 1);
+
+        // 신고당한 사람 횟수 카운팅
+        Map<String, Integer> reportedCount = new HashMap<>();
+        for (Set<String> reportedSet : reportMap.values()) {
+            for (String reported : reportedSet) {
+                reportedCount.put(reported, reportedCount.getOrDefault(reported, 0) + 1);
+            }
+        }
+
+        // 정지 대상유저 목록
+        Set<String> bannedUsers = new HashSet<>();
+        for (Map.Entry<String, Integer> entry : reportedCount.entrySet()) {
+            if (entry.getValue() >= k) {
+                bannedUsers.add(entry.getKey());
+            }
+        }
+
+        // 메일 받을 사람 카운트. . .
+        int[] answer = new int[id_list.length];
+        Map<String, Integer> nameToIndex = new HashMap<>();
+        for (int i = 0; i < id_list.length; i++) {
+            nameToIndex.put(id_list[i], i);
+        }
+        for (Map.Entry<String, Set<String>> entry : reportMap.entrySet()) {
+            String reporter = entry.getKey();
+            Set<String> reportedSet = entry.getValue();
+            for (String reported : reportedSet) {
+                if (bannedUsers.contains(reported)) {
+                    answer[nameToIndex.get(reporter)]++;
                 }
             }
         }
 
 
-
-        // 결과 배열 만들기
-        int[] answer = new int[id_list.length];
-        for (int i = 0; i < id_list.length; i++) {
-            answer[i] = mailCount.get(id_list[i]);
-        }
         return answer;
     }
 
